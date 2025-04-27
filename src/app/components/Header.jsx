@@ -16,7 +16,7 @@ function Header() {
   const breakpoint = useBreakpoint();
   const toolData = useSelector((state) => state.tool);
   const dispatch = useDispatch();
-  console.log(breakpoint);
+  // console.log(breakpoint);
   if (breakpoint === null) return;
   <div className="sticky top-0 flex justify-between items-center p-4 bg-white/30 z-20"></div>;
   return (

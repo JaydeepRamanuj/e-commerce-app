@@ -8,6 +8,9 @@ export async function GET(_req, { params }) {
 
 export async function POST(req) {
   const { cartId, cartData } = await req.json();
+  console.log("cartId::", cartId);
+  console.log("cartData::", cartData);
+
   const response = updateCart(cartId, cartData);
   if (response) {
     return new Response("Added", {

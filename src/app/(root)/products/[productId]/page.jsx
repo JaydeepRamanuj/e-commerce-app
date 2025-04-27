@@ -1,19 +1,19 @@
 import AddToCartButton from "@/app/components/AddToCartButton";
 import CategorySection from "@/app/components/CategorySection";
-import CheckoutButton from "@/app/components/CheckoutButton";
+import BuyNowButton from "@/app/components/BuyNowButton";
 import FavoriteIcon from "@/app/components/FavoriteIcon";
 import ProductImageContainer from "@/app/components/ProductImageContainer";
 import ProductReview from "@/app/components/ProductReview";
 import Rating from "@/app/components/Rating";
 import Tag from "@/app/components/Tag";
-import { sitePath } from "@/app/constants";
+import { baseUrl } from "@/app/constants";
 import { findDiscountedPrice } from "@/app/utils/helperFunctions";
 
 async function ProductPage({ params }) {
   const { productId } = await params;
   let productData = null;
   try {
-    const response = await fetch(`${sitePath}/api/products/${productId}`);
+    const response = await fetch(`${baseUrl}/api/products/${productId}`);
     productData = await response.json();
   } catch (error) {
     console.log("Error in fetching product data:", error);
@@ -130,8 +130,20 @@ async function ProductPage({ params }) {
                   }}
                 />
                 <div className="mt-3 bg-gray-300/10 p-3 rounded-md">
-                  <AddToCartButton id={productData.id} />
-                  <CheckoutButton id={productData.id} />
+                  <AddToCartButton
+                    productId={productData.id}
+                    title={productData.title}
+                    imgUrl={productData.images[0]}
+                    price={productData.price}
+                    discountPercentage={productData.discountPercentage}
+                  />
+                  <BuyNowButton
+                    productId={productData.id}
+                    title={productData.title}
+                    imgUrl={productData.images[0]}
+                    price={productData.price}
+                    discountPercentage={productData.discountPercentage}
+                  />
                 </div>
               </div>
             </div>

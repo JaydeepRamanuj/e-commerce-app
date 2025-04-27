@@ -1,11 +1,11 @@
 import SearchResult from "@/app/components/SearchResult";
-import { sitePath } from "@/app/constants";
+import { baseUrl } from "@/app/constants";
 import React from "react";
 
 async function SearchPage() {
   let products = [];
   try {
-    const response = await fetch(`${sitePath}/api/search`);
+    const response = await fetch(`${baseUrl}/api/search`);
     products = await response.json();
   } catch (error) {
     console.log("Error fetching products:", error);

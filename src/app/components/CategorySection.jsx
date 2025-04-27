@@ -1,5 +1,6 @@
 import React from "react";
 import CategoryList from "./CategoryList";
+import { baseUrl } from "../constants";
 
 async function CategorySection({ title, type, category, length = null }) {
   let products = [];
@@ -8,8 +9,7 @@ async function CategorySection({ title, type, category, length = null }) {
 
     if (type) params.append("type", type);
     if (category) params.append("category", category);
-
-    const url = `http://localhost:3000/api/products?${params.toString()}`;
+    const url = `${baseUrl}/api/products?${params.toString()}`;
 
     const response = await fetch(url);
     products = await response.json();

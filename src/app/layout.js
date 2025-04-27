@@ -41,7 +41,13 @@ export default function RootLayout({ children }) {
             <Footer />
             <SideBar />
           </StoreProvider>
-          <ToastContainer />
+          <ToastContainer
+            autoClose={3000}
+            newestOnTop={true}
+            closeOnClick={true}
+            hideProgressBar
+            className="w-fit"
+          />
         </body>
       </html>
     </ClerkProvider>

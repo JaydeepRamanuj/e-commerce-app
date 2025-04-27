@@ -25,4 +25,4 @@ export const categoriesList = [
   "womens-watches",
 ];
 
-export const sitePath = "http://localhost:3000/";
+export const baseUrl = "http://localhost:3010";

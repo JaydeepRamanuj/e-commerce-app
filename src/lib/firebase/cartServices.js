@@ -9,6 +9,7 @@ import {
   getDoc,
 } from "firebase/firestore";
 import { db } from "./setup";
+import { Zen_Loop } from "next/font/google";
 
 // async function getAllProductsFromCart(userId) {
 //   try {
@@ -24,14 +25,13 @@ import { db } from "./setup";
 //     console.log(error);
 //   }
 // }
-async function getCartData(cartId) {
+export async function getCartData(cartId) {
   try {
-    const cartCollection = collection(db, `cart/${cartId}`);
-    const querySnapshot = await getDocs(cartCollection);
-    const products = querySnapshot.docs.map((product) => ({
-      ...product.data(),
-    }));
-    return products;
+    const cartRef = doc(db, "cart", String(cartId));
+    const cartSnapshot = await getDoc(cartRef);
+    const cartData = cartSnapshot.data();
+    // console.log("cartData::", cartData);
+    return cartData;
   } catch (error) {
     console.log(error);
   }
@@ -107,18 +107,10 @@ export async function addProductToCart(cartId, cartObj) {
 // export async function removeProductToCart(productId) {}
 // export async function increaseProductQuantity(productId) {}
 // export async function decreaseProductQuantity(productId) {}
-export async function setCart(cartId) {
+export async function setCart(cartData) {
   try {
-    const cartRef = doc(db, "cart", cartId);
-    setDoc(cartRef, {
-      cartId: "1",
-      userId: "1",
-      itemTotalVal: 0,
-      items: [],
-      totalTax: 0,
-      grandTotal: 0,
-      taxApplicable: 18,
-    });
+    const cartRef = doc(db, "cart", cartData.cartId);
+    setDoc(cartRef, cartData);
     return true;
   } catch (error) {
     console.log("Error while adding product to cart", error, message);

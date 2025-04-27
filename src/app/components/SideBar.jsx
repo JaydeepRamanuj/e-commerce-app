@@ -14,25 +14,6 @@ function SideBar() {
   const breakpoint = useBreakpoint();
   const userData = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  // const handleOutsideClick = () => {
-  //   window.addEventListener("mousedown", (e) => {
-  //     console.log("e.target ::", e.target);
-  //     console.log("ref.current ::", ref.current);
-  //     toolData.isSidebarVisible;
-  //     console.log("isSidebarVisible ::", toolData.isSidebarVisible);
-  //     if (
-  //       toolData.isSidebarVisible &&
-  //       ref.current &&
-  //       !ref.current.contains(e.target)
-  //     ) {
-  //       dispatch(toggleSidebar());
-  //     }
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   handleOutsideClick();
-  // }, [toolData.isSidebarVisible]);
 
   return (
     <>

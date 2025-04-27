@@ -10,7 +10,7 @@ function CartMenu() {
     <div
       className="relative cursor-pointer w-fit"
       onClick={() => {
-        router.push("/cart/1");
+        router.push(`/cart/${cartData.cartId}`);
       }}
     >
       <FaShoppingCart className="text-3xl" />

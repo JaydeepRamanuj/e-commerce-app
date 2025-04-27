@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   userId: "",
   username: "",
-  email: 0,
-  isLoggedIn: 0,
+  cartId: "",
+  email: "",
   wishlist: [],
 };
 
@@ -11,6 +11,15 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    initializeUser: (state, action) => {
+      if (action.payload) {
+        state.userId = action.payload.userId;
+        state.username = action.payload.username;
+        state.cartId = action.payload.cartId;
+        state.email = action.payload.email;
+        state.wishlist = action.payload.wishlist;
+      }
+    },
     addItemToWishlist: (state, action) => {
       if (!state.wishlist.includes(action.payload)) {
         state.wishlist.push(action.payload);
@@ -24,5 +33,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { addItemToWishlist, removeItemFromWishlist } = userSlice.actions;
+export const { addItemToWishlist, removeItemFromWishlist, initializeUser } =
+  userSlice.actions;
 export default userSlice.reducer;

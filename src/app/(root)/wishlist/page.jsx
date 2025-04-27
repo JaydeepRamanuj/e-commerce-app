@@ -1,6 +1,6 @@
 "use client";
 import ProductCard from "@/app/components/ProductCard";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoHeart, IoHeartOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
@@ -8,6 +8,8 @@ import { toast } from "react-toastify";
 function WishlistPage() {
   const userData = useSelector((state) => state.user);
   const [isFavorite, setFavorite] = useState(false);
+  useEffect(() => {}, [userData]);
+
   return (
     <div>
       <h1 className="my-6 text-3xl text-white text-center font-bold p-3 rounded-md bg-white/10">

@@ -1,7 +1,6 @@
 import { db } from "./setup";
 import {
   arrayUnion,
-  arrayRemove,
   query,
   getDoc,
   doc,
@@ -32,22 +31,34 @@ async function getProductsFromWishlist(userId) {
   }
 }
 
-async function addProductToWishlist(userId, productId) {
-  const userDoc = doc(db, "users", String(userId));
+async function addProductToWishlist(userId, productData) {
+  const userDocRef = doc(db, "users", String(userId));
+  console.log("userId", userId);
+  console.log("Inside addProductToWishlist()");
+
   try {
-    await updateDoc(userDoc, {
-      wishlist: arrayUnion(productId),
+    await updateDoc(userDocRef, {
+      wishlist: arrayUnion(productData),
     });
   } catch (error) {
     console.log(error);
   }
 }
 async function removeProductFromWishlist(userId, productId) {
-  const userDoc = doc(db, "users", String(userId));
+  const userDocRef = doc(db, "users", String(userId));
+
+  const userSnapshot = await getDoc(userDocRef);
+  const userData = userSnapshot.data();
+
   try {
-    await updateDoc(userDoc, {
-      wishlist: arrayRemove(productId),
-    });
+    if (userData.wishlist) {
+      const updatedWishlist = userData.wishlist.filter(
+        (product) => product.id !== productId
+      );
+      await updateDoc(userDocRef, {
+        wishlist: updatedWishlist,
+      });
+    }
   } catch (error) {
     console.log(error);
   }

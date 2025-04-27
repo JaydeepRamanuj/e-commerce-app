@@ -7,15 +7,7 @@ import {
   increaseProductAmount,
   removeFromCart,
 } from "../slices/cartSlice";
-
-export const initializeCartAsync = createAsyncThunk(
-  "cart/initializeCartAsync",
-  async ({ userId, cartId }, { dispatch, getState }) => {
-    dispatch(initializeCartAsync(cartId, userId));
-    const cartData = getState().cart;
-    setCart(cartId);
-  }
-);
+import { baseUrl } from "@/app/constants";
 
 export const updateCartAsync = createAsyncThunk(
   "cart/updateCartAsync",
@@ -40,17 +32,16 @@ export const updateCartAsync = createAsyncThunk(
       }
 
       const cartData = getState().cart;
+
       // const res = updateCart(cartId, cartData);
 
-      const res = await fetch(`/api/cart/${cartId}`, {
+      const res = await fetch(`${baseUrl}/api/cart/${cartId}/`, {
         method: "POST",
         body: JSON.stringify({
-          userId: cartId,
-          cartItems: cartData,
+          cartId: cartId,
+          cartData: cartData,
         }),
       });
-
-      // const
 
       if (res.ok) {
         if (["addToCart", "increaseProductAmount"].includes(type)) {

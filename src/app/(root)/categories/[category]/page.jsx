@@ -1,15 +1,13 @@
 import ProductCard from "@/app/components/ProductCard";
+import { baseUrl } from "@/app/constants";
 import { makeCapitalize } from "@/app/utils/helperFunctions";
 import React from "react";
 
 async function CategoryPage({ params }) {
   const { category } = await params;
-  // console.log("category:", category);
   let products = [];
   try {
-    const response = await fetch(
-      `http://localhost:3000/api/categories/${category}`
-    );
+    const response = await fetch(`${baseUrl}/api/categories/${category}`);
     products = await response.json();
   } catch (error) {
     console.log("Error fetching products:", error);

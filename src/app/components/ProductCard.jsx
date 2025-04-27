@@ -56,7 +56,7 @@ function ProductCard({
           </span>
         </div>
       </div>
-      <div className="absolute w-[90%] mt-2 -bottom-10 left-[5%] transition-all group-hover:bottom-2.5 flex gap-2">
+      <div className="relative lg:absolute w-[90%] mt-2 lg:-bottom-10 left-[5%] transition-all group-hover:bottom-2.5 flex gap-2">
         <div
           className="flex-1 text-white text-center bg-orange-500 rounded p-1 flex items-center justify-center gap-1.5 hover:bg-orange-600 active:scale-95"
           onClick={(e) => {
@@ -81,7 +81,7 @@ function ProductCard({
           Buy now
         </div>
         <div
-          className="min-w-[40px]  text-white text-center bg-blue-500 rounded p-1 flex items-center justify-center gap-1.5 hover:bg-blue-600  active:scale-95"
+          className="min-w-[40px] text-white text-center bg-blue-500 rounded p-1 flex items-center justify-center gap-1.5 hover:bg-blue-600  active:scale-95"
           onClick={(e) => {
             e.stopPropagation();
             dispatch(
