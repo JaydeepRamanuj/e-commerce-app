@@ -49,6 +49,7 @@ async function getSingleProduct(id) {
     const productSnapshot = await getDoc(productRef);
 
     const product = productSnapshot.data();
+    console.log("Product in product service ::", product);
     return product;
   } catch (error) {
     console.log("Error fetching product:", error);
@@ -182,7 +183,6 @@ export async function getAllProductNameList() {
       status: 500,
     });
   }
-  return productNameList;
 }
 
 export {
