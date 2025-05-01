@@ -6,7 +6,7 @@ function ErrorPageRoot() {
   const router = useRouter();
   return (
     <div>
-      <div className="my-6 min-h-[300px] bg-slate-300/10 rounded-md p-3 flex  justify-center items-center gap-3 relative">
+      <div className="my-6 h-fit bg-slate-300/10 rounded-md p-3 flex  justify-center items-center gap-3 relative">
         <DotLottieReact
           className="w-full"
           src="https://lottie.host/e3b2f5cf-da38-491d-ab01-19037e8c386e/hZKV4JwSDF.lottie"

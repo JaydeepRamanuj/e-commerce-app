@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 function PageNotFoundRootLevel() {
   const router = useRouter();
   return (
-    <div className="my-6 max-h-[300px] bg-slate-300/10 rounded-md p-3 flex  justify-center items-center gap-3 relative">
+    <div className="my-6 h-fit bg-slate-300/10 rounded-md p-3 flex  justify-center items-center gap-3 relative">
       <DotLottieReact
         className="w-full h-full"
         src="https://lottie.host/3e74a6c2-85f0-437c-8fe5-3450ca8cddc9/lo4KwWU9gy.lottie"
