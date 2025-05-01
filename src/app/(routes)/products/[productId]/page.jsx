@@ -1,18 +1,18 @@
-import AddToCartButton from "@/app/components/AddToCartButton";
-import CategorySection from "@/app/components/CategorySection";
-import BuyNowButton from "@/app/components/BuyNowButton";
-import FavoriteIcon from "@/app/components/FavoriteIcon";
-import ProductImageContainer from "@/app/components/ProductImageContainer";
-import ProductReview from "@/app/components/ProductReview";
-import Rating from "@/app/components/Rating";
-import Tag from "@/app/components/Tag";
-import { baseUrl } from "@/app/constants";
-import { findDiscountedPrice } from "@/app/utils/helperFunctions";
+import AddToCartButton from "@/components/AddToCartButton";
+import CategorySection from "@/components/CategorySection";
+import BuyNowButton from "@/components/BuyNowButton";
+import FavoriteIcon from "@/components/FavoriteIcon";
+import ProductImageContainer from "@/components/ProductImageContainer";
+import ProductReview from "@/components/ProductReview";
+import Rating from "@/components/Rating";
+import Tag from "@/components/Tag";
+import { findDiscountedPrice } from "@/utils/helperFunctions";
 
 async function ProductPage({ params }) {
   const { productId } = await params;
   let productData = null;
   try {
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
     const response = await fetch(`${baseUrl}/api/products/${productId}`);
     productData = await response.json();
   } catch (error) {
@@ -29,7 +29,7 @@ async function ProductPage({ params }) {
             <h3 className="text-sm flex">
               Tags:
               <span className="flex items-center gap-3 pl-3">
-                {productData.tags.map((tag, index) => (
+                {productData?.tags.map((tag, index) => (
                   <Tag title={tag} key={index} />
                 ))}
               </span>

@@ -1,11 +1,18 @@
-import SearchResult from "@/app/components/SearchResult";
-import { baseUrl } from "@/app/constants";
+export const dynamic = "force-dynamic";
+
+import SearchResult from "@/components/SearchResult";
 import React from "react";
 
 async function SearchPage() {
   let products = [];
   try {
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
     const response = await fetch(`${baseUrl}/api/search`);
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch products");
+    }
+
     products = await response.json();
   } catch (error) {
     console.log("Error fetching products:", error);

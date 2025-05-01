@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React from "react";
-import { categoriesList } from "../constants";
+import { categoriesList } from "@/app/constants";
 
 function CategoryBar() {
   const router = useRouter();

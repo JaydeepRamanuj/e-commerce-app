@@ -1,4 +1,4 @@
-import { getRandomNumberInRange } from "@/app/utils/helperFunctions";
+import { getRandomNumberInRange } from "@/utils/helperFunctions";
 import { updateSinglePropertyOfProduct } from "./productServices";
 
 export function updateDiscountForAllProducts() {

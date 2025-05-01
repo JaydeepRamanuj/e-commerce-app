@@ -1,4 +1,4 @@
-import { allProducts } from "@/app/utils/server-side-data-store";
+import { allProducts } from "@/utils/server-side-data-store";
 import { db, productsCollection } from "./setup";
 import {
   query,
@@ -21,6 +21,9 @@ async function getAllProducts() {
     return products;
   } catch (error) {
     console.log("Error fetching all products:", error);
+    return new Response("Something went wrong while fetching product data", {
+      status: 500,
+    });
   }
 }
 async function getProductsOfSpecificCategory(category) {
@@ -33,7 +36,10 @@ async function getProductsOfSpecificCategory(category) {
 
     return products;
   } catch (error) {
-    console.log(error);
+    console.log("Error fetching products by category", error);
+    return new Response("Something went wrong while fetching product data", {
+      status: 500,
+    });
   }
 }
 
@@ -46,6 +52,9 @@ async function getSingleProduct(id) {
     return product;
   } catch (error) {
     console.log("Error fetching product:", error);
+    return new Response("Something went wrong while fetching product data", {
+      status: 500,
+    });
   }
 }
 
@@ -112,6 +121,9 @@ export async function getProductsByCategory(category) {
     // console.log("products ::", products);
   } catch (error) {
     console.error("Error getting products by category:", error);
+    return new Response("Something went wrong while fetching product data", {
+      status: 500,
+    });
   }
   return products;
 }
@@ -128,6 +140,9 @@ export async function getProductsOnSale() {
     // console.log("products ::", products);
   } catch (error) {
     console.error("Error getting products on sale:", error);
+    return new Response("Something went wrong while fetching product data", {
+      status: 500,
+    });
   }
   return products;
 }
@@ -144,6 +159,9 @@ export async function getHighRatedProducts() {
     // console.log("products ::", products);
   } catch (error) {
     console.error("Error getting High rated products:", error);
+    return new Response("Something went wrong while fetching product data", {
+      status: 500,
+    });
   }
   return products;
 }
@@ -160,11 +178,12 @@ export async function getAllProductNameList() {
     return productNameList;
   } catch (error) {
     console.error("Error getting High rated products:", error);
+    return new Response("Something went wrong while fetching product data", {
+      status: 500,
+    });
   }
   return productNameList;
 }
-
-export async function getAllProductsBySearchKey() {}
 
 export {
   getAllProducts,

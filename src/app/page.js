@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import CategorySection from "./components/CategorySection";
+import CategorySection from "../components/CategorySection";
 
 export default function Home() {
   return (

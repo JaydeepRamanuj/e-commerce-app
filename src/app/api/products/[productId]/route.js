@@ -1,8 +1,12 @@
 import { getSingleProduct } from "@/lib/firebase/productServices";
 
 export async function GET(_req, { params }) {
-  const { productId } = params;
-  const product = await getSingleProduct(productId);
-  console.log(product);
-  return Response.json(product);
+  const { productId } = await params;
+  try {
+    const product = await getSingleProduct(productId);
+    return Response.json(product);
+  } catch (error) {
+    console.log("Error while fetching product data", error);
+    return new Response("Error fetching data", { status: 500 });
+  }
 }

@@ -1,12 +1,12 @@
-import ProductCard from "@/app/components/ProductCard";
-import { baseUrl } from "@/app/constants";
-import { makeCapitalize } from "@/app/utils/helperFunctions";
+import ProductCard from "@/components/ProductCard";
+import { makeCapitalize } from "@/utils/helperFunctions";
 import React from "react";
 
 async function CategoryPage({ params }) {
   const { category } = await params;
   let products = [];
   try {
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
     const response = await fetch(`${baseUrl}/api/categories/${category}`);
     products = await response.json();
   } catch (error) {

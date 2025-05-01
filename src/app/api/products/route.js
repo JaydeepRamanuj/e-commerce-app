@@ -1,4 +1,4 @@
-import { allProducts } from "@/app/utils/server-side-data-store";
+import { allProducts } from "@/utils/server-side-data-store";
 import {
   getAllProducts,
   getHighRatedProducts,
@@ -34,9 +34,21 @@ export async function GET(req) {
       }
     } catch (error) {
       console.log("Error fetching products:", error);
+      return new Response("Something went wrong while fetching product data", {
+        status: 500,
+      });
     }
 
-  if (category) products = await getProductsByCategory(category);
+  if (category) {
+    try {
+      products = await getProductsByCategory(category);
+    } catch (error) {
+      console.log("Error fetching products:", error);
+      return new Response("Something went wrong while fetching product data", {
+        status: 500,
+      });
+    }
+  }
 
   let resultingData = products;
   ratinggt &&

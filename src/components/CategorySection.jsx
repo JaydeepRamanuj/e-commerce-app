@@ -1,6 +1,5 @@
 import React from "react";
 import CategoryList from "./CategoryList";
-import { baseUrl } from "../constants";
 
 async function CategorySection({ title, type, category, length = null }) {
   let products = [];
@@ -9,13 +8,14 @@ async function CategorySection({ title, type, category, length = null }) {
 
     if (type) params.append("type", type);
     if (category) params.append("category", category);
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL;
     const url = `${baseUrl}/api/products?${params.toString()}`;
 
     const response = await fetch(url);
     products = await response.json();
     length && (products = products.slice(0, 3));
   } catch (error) {
-    console.log(`Error fetching products of type :${type}`, error);
+    console.log(`Error fetching products :${type || category}`, error);
   }
   return <CategoryList title={title} products={products} />;
 }

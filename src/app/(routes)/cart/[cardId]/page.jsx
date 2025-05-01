@@ -1,6 +1,6 @@
 "use client";
-import CartTableItem from "@/app/components/CartTableItem";
-import { useBreakpoint } from "@/app/hooks/useBreakpoint";
+import CartTableItem from "@/components/CartTableItem";
+import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { useSelector } from "react-redux";
 
 function CartPage() {

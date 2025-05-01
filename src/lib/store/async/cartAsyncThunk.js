@@ -35,7 +35,8 @@ export const updateCartAsync = createAsyncThunk(
 
       // const res = updateCart(cartId, cartData);
 
-      const res = await fetch(`${baseUrl}/api/cart/${cartId}/`, {
+      // const res = await fetch(`${baseUrl}/api/cart/${cartId}/`, {
+      const res = await fetch(`/api/cart/${cartId}/`, {
         method: "POST",
         body: JSON.stringify({
           cartId: cartId,
