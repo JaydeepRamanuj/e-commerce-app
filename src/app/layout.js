@@ -36,12 +36,14 @@ export default function RootLayout({ children }) {
           className={`${geistSans.variable} ${geistMono.variable} antialiased  relative`}
         >
           <StoreProvider>
-            <ClerkAuthWatcher />
-            <Header />
-            <CategoryBar />
-            <Main>{children}</Main>
-            <Footer />
-            <SideBar />
+            <ClerkProvider>
+              <ClerkAuthWatcher />
+              <Header />
+              <CategoryBar />
+              <Main>{children}</Main>
+              <Footer />
+              <SideBar />
+            </ClerkProvider>
           </StoreProvider>
           <ToastContainer
             autoClose={3000}
