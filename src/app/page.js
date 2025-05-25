@@ -1,53 +1,49 @@
 import { Suspense } from "react";
 import CategorySection from "../components/CategorySection";
+import CategorySectionWrapper from "@/components/CategorySectionWrapper";
 
 export default function Home() {
-  return (
-    <div className="">
-      <Suspense
-        fallback={
-          <div className="my-6 min-h-[300px] bg-slate-300/10 rounded-md p-3 flex flex-col justify-center items-center gap-3">
-            <span className="loader"></span>
-            <span>Loading Laptops...</span>
-          </div>
-        }
-      >
-        <CategorySection title="Laptops" category="laptops" />
-      </Suspense>
-      <Suspense
-        fallback={
-          <div className="my-6 min-h-[300px] bg-slate-300/10 rounded-md p-3 flex flex-col justify-center items-center gap-3">
-            <span className="loader"></span>
-            <span>Loading High rated Products...</span>
-          </div>
-        }
-      >
-        <CategorySection
-          title="High rated Products"
-          type="high-rated-products"
-        />
-      </Suspense>
-      <Suspense
-        fallback={
-          <div className="my-6 min-h-[300px] bg-slate-300/10 rounded-md p-3 flex flex-col justify-center items-center gap-3">
-            <span className="loader"></span>
-            <span>Loading Products on sale...</span>
-          </div>
-        }
-      >
-        <CategorySection title="Products on sale" type="products-on-sale" />
-      </Suspense>
+  const categories = [
+    {
+      title: "Laptop",
+      category: "laptops",
+    },
+    {
+      title: "High rated Products",
+      type: "high-rated-products",
+    },
+    {
+      title: "Products on sale",
+      type: "products-on-sale",
+    },
+    {
+      title: "Smartphone",
+      category: "smartphones",
+    },
+  ];
 
-      <Suspense
-        fallback={
-          <div className="my-6 min-h-[300px] bg-slate-300/10 rounded-md p-3 flex flex-col justify-center items-center gap-3">
-            <span className="loader"></span>
-            <span>Loading Smartphones...</span>
-          </div>
-        }
-      >
-        <CategorySection title="Smartphone" category="smartphones" />
-      </Suspense>
+  return (
+    <div className="bg-black min-h-screen">
+      {categories.map((category, index) => (
+        <CategorySectionWrapper
+          key={index}
+          category={category.category}
+          title={category.title}
+          type={category.type}
+          length={category.length}
+        />
+      ))}
+
+      {/* <CategorySectionWrapper title="Laptop" category="laptops" />
+      <CategorySectionWrapper
+        title="High rated Products"
+        type="high-rated-products"
+      />
+      <CategorySectionWrapper
+        title="Products on sale"
+        type="products-on-sale"
+      />
+      <CategorySectionWrapper title="Smartphone" category="smartphones" /> */}
     </div>
   );
 }

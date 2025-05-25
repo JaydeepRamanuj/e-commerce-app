@@ -89,7 +89,7 @@ function CartTableItem({ id, name, image, price, productQuantity }) {
             <img src={image} alt="" className="size-10 rounded" />
             <span className="line-clamp-1">{name}</span>
           </div>
-          <div className="flex-1 text-center">{price}</div>
+          <div className="flex-1 text-center">{`$ ${price}`}</div>
           <div className="flex-1 flex justify-center items-center">
             <span
               className="border border-r-0 rounded-r-none  rounded h-8 w-8 flex justify-center items-center hover:bg-white/30 cursor-pointer active:scale-95"

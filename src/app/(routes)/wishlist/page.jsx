@@ -12,7 +12,7 @@ function WishlistPage() {
 
   return (
     <div>
-      <h1 className="my-6 text-3xl text-white text-center font-bold p-3 rounded-md bg-white/10">
+      <h1 className="my-6 text-3xl text-white text-center font-bold p-3 bg-yellow-600/10 text-yellow-400 border border-yellow-500/30 rounded">
         Wishlist
       </h1>
       {userData.wishlist.length === 0 ? (

@@ -2,6 +2,7 @@
 import CartTableItem from "@/components/CartTableItem";
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 function CartPage() {
   const cartData = useSelector((state) => state.cart);
@@ -34,7 +35,7 @@ function CartPage() {
             ))}
           </div>
         </div>
-        <div className="flex-1 bg-gray-200/10 rounded-md p-4 h-fit flex flex-col justify-center">
+        <div className="max-w-[35%] flex-1 bg-gray-200/10 rounded-md p-4 h-fit flex flex-col justify-center">
           <h4 className="p-2 border-b border-gray-200/20 flex justify-between">
             <span>SubTotal :</span> <span>$ {cartData.itemTotalVal}</span>
           </h4>
@@ -47,7 +48,14 @@ function CartPage() {
             <span className="text-3xl">$ {cartData.grandTotal}</span>
           </h4>
 
-          <div className="mt-10 p-2 text-center text-white text-xl bg-gray-200/30 hover:bg-gray-200/50 rounded cursor-pointer">
+          <div
+            className="mt-10 p-2 text-center text-white text-xl bg-gray-200/30 hover:bg-gray-200/50 rounded cursor-pointer"
+            onClick={() => {
+              toast.info(
+                "🔐 Authentication and product display are the focus of this demo. Checkout functionality is not active for demonstration purposes."
+              );
+            }}
+          >
             Checkout
           </div>
         </div>
