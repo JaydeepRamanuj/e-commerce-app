@@ -34,7 +34,7 @@ function ProductCard({
 
   return (
     <div
-      className="max-w-[300px] relative p-3 w-full rounded-2xl bg-[#1a1a1a] text-yellow-100 cursor-pointer transition-all overflow-hidden shadow-md shadow-yellow-500/10 hover:shadow-yellow-500/20 hover:scale-[1.02] border border-yellow-600/20 h-full"
+      className="max-w-[300px] relative p-3 w-full rounded-2xl bg-[#1a1a1a] text-yellow-100 cursor-pointer transition-all overflow-hidden shadow-md shadow-yellow-500/10 hover:shadow-yellow-500/20 hover:scale-[1.02] border border-yellow-600/20 h-full flex flex-col"
       onClick={() => router.push(`/products/${id}`)}
     >
       <img
@@ -42,7 +42,7 @@ function ProductCard({
         alt={title}
         className="mx-auto h-[160px] rounded-xl object-cover mb-3"
       />
-      <div className="flex flex-col items-center text-center">
+      <div className="flex flex-col items-center text-center mb-3">
         <h2 className="line-clamp-2 font-semibold text-yellow-300 text-sm md:text-base mb-1">
           {title}
         </h2>
@@ -57,7 +57,7 @@ function ProductCard({
           <span className="text-xs">({ratingCount})</span>
         </div>
       </div>
-      <div className="relative w-full mt-3 flex gap-2">
+      <div className="relative w-full mt-auto flex gap-2">
         <BuyNowButton
           productId={id}
           discountPercentage={discountPercentage}

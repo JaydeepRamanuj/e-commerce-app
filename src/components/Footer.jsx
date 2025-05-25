@@ -8,7 +8,7 @@ function Footer() {
 
         <div className="text-yellow-400 text-lg font-semibold flex items-center gap-2">
           <span>Thank you for visiting</span>
-          <span className="animate-wave text-xl">👋</span>
+          <span className="text-xl">👋</span>
         </div>
 
         <div className="text-xs text-gray-500 mt-2">
