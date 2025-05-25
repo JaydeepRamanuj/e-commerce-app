@@ -1,16 +1,25 @@
+import { useClerk, useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 function CartMenu() {
   const cartData = useSelector((state) => state.cart);
   const router = useRouter();
+  const { redirectToSignIn } = useClerk();
+  const { isSignedIn } = useUser();
   return (
     <div
       className="relative cursor-pointer w-fit"
       onClick={() => {
-        router.push(`/cart/${cartData.cartId}`);
+        if (isSignedIn) {
+          router.push(`/cart/${cartData.cartId}`);
+        } else {
+          toast.warn("Please sign in to add product to cart");
+          redirectToSignIn({ returnBackUrl: window.location.href });
+        }
       }}
     >
       <FaShoppingCart className="text-3xl" />

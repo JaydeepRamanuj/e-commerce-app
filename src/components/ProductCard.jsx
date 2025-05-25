@@ -8,6 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { BiSolidCartAdd } from "react-icons/bi";
 import { updateCartAsync } from "@/lib/store/async/cartAsyncThunk";
 import FavoriteIcon from "./FavoriteIcon";
+import { useClerk, useUser } from "@clerk/nextjs";
+import { toast } from "react-toastify";
+
 function ProductCard({
   id,
   title,
@@ -18,6 +21,9 @@ function ProductCard({
   ratingCount,
   availabilityStatus = "In Stock",
 }) {
+  const { redirectToSignIn } = useClerk();
+  const { isSignedIn } = useUser();
+
   const cartData = useSelector((state) => state.cart);
   const router = useRouter();
   const dispatch = useDispatch();
@@ -61,21 +67,26 @@ function ProductCard({
           className="flex-1 text-white text-center bg-orange-500 rounded p-1 flex items-center justify-center gap-1.5 hover:bg-orange-600 active:scale-95"
           onClick={(e) => {
             e.stopPropagation();
-
-            dispatch(
-              updateCartAsync({
-                cartId: cartData.cartId,
-                productId: id,
-                type: "addToCart",
-                productDetails: {
+            // console.log(isSignedIn);
+            if (isSignedIn) {
+              dispatch(
+                updateCartAsync({
+                  cartId: cartData.cartId,
                   productId: id,
-                  price: discountedPrice,
-                  title: title,
-                  img: imgUrl,
-                },
-              })
-            );
-            router.push(`/cart/${cartData.cartId}`);
+                  type: "addToCart",
+                  productDetails: {
+                    productId: id,
+                    price: discountedPrice,
+                    title: title,
+                    img: imgUrl,
+                  },
+                })
+              );
+              router.push(`/cart/${cartData.cartId}`);
+            } else {
+              toast.warn("Please sign in to buy product");
+              redirectToSignIn({ returnBackUrl: window.location.href });
+            }
           }}
         >
           Buy now
@@ -84,19 +95,24 @@ function ProductCard({
           className="min-w-[40px] text-white text-center bg-blue-500 rounded p-1 flex items-center justify-center gap-1.5 hover:bg-blue-600  active:scale-95"
           onClick={(e) => {
             e.stopPropagation();
-            dispatch(
-              updateCartAsync({
-                cartId: cartData.cartId,
-                productId: id,
-                type: "addToCart",
-                productDetails: {
+            if (isSignedIn) {
+              dispatch(
+                updateCartAsync({
+                  cartId: cartData.cartId,
                   productId: id,
-                  price: discountedPrice,
-                  title: title,
-                  img: imgUrl,
-                },
-              })
-            );
+                  type: "addToCart",
+                  productDetails: {
+                    productId: id,
+                    price: discountedPrice,
+                    title: title,
+                    img: imgUrl,
+                  },
+                })
+              );
+            } else {
+              toast.warn("Please sign in to add product to cart");
+              redirectToSignIn({ returnBackUrl: window.location.href });
+            }
           }}
         >
           <BiSolidCartAdd />

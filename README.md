@@ -47,3 +47,9 @@ This project was built as a part of my learning journey to practice integrating:
 - Full-stack tools with authentication and database.
 - Scalable state management using Redux.
 - Real-world e-commerce UX flows like cart, wishlist, and category filtering.
+
+## ⚠️ Authentication Note
+
+This project uses **Clerk for authentication**. Due to the current deployment on Vercel's free tier (`.vercel.app` domain), Clerk's production **mode requires a custom domain for full functionality and enhanced security**.
+
+For demonstration purposes, Clerk is currently running in **development mode**. This does not affect core authentication functionality for showcasing the app's features. For a production deployment, a custom domain would be integrated to enable Clerk's live mode.

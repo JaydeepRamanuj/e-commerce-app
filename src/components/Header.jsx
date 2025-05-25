@@ -10,12 +10,16 @@ import { IoClose } from "react-icons/io5";
 import { FaBars } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "@/lib/store/slices/toolSlice";
+import { toast } from "react-toastify";
+import { useClerk, useUser } from "@clerk/nextjs";
 
 function Header() {
   const router = useRouter();
   const breakpoint = useBreakpoint();
   const toolData = useSelector((state) => state.tool);
   const dispatch = useDispatch();
+  const { redirectToSignIn } = useClerk();
+  const { isSignedIn } = useUser();
   // console.log(breakpoint);
   if (breakpoint === null) return;
   <div className="sticky top-0 flex justify-between items-center p-4 bg-white/30 z-20"></div>;
@@ -62,7 +66,11 @@ function Header() {
           <span
             className="ml-auto mr-3 cursor-pointer text-gray-300 hover:text-gray-200"
             onClick={() => {
-              router.push(`/wishlist`);
+              if (isSignedIn) {
+                router.push(`/wishlist`);
+              } else {
+                toast.warn("Please sign in to see wishlisted product");
+              }
             }}
           >
             My wishlist
