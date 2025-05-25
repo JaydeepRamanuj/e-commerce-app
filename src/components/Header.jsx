@@ -16,27 +16,25 @@ function Header() {
   const breakpoint = useBreakpoint();
   const toolData = useSelector((state) => state.tool);
   const dispatch = useDispatch();
-  // console.log(breakpoint);
-  if (breakpoint === null) return;
-  <div className="sticky top-0 flex justify-between items-center p-4 bg-white/30 z-20"></div>;
+
+  if (breakpoint === null) return null;
+
   return (
     <>
       {breakpoint < 992 ? (
-        <div className="sticky top-0 flex justify-between items-center p-4 bg-black z-20">
+        <div className="sticky top-0 flex justify-between items-center p-4 bg-[#0F0F0F] text-white z-20">
           <span
-            className="cursor-pointer flex gap-3"
-            onClick={() => {
-              router.push("/");
-            }}
+            className="cursor-pointer flex gap-3 items-center"
+            onClick={() => router.push("/")}
           >
-            <img src="/website_logo.png" alt="" className="size-8" />
+            <img src="/website_logo.png" alt="Logo" className="size-8" />
           </span>
+
           <SearchBar />
+
           <div
-            className="size-10 rounded-full bg-white/10 flex justify-center  items-center p-1 hover:bg-white/20 cursor-pointer"
-            onClick={() => {
-              dispatch(toggleSidebar());
-            }}
+            className="size-10 rounded-full bg-white/10 flex justify-center items-center p-1 hover:bg-white/20 cursor-pointer"
+            onClick={() => dispatch(toggleSidebar())}
           >
             {toolData.isSidebarVisible ? (
               <IoClose className="size-6" />
@@ -46,32 +44,40 @@ function Header() {
           </div>
         </div>
       ) : (
-        <div className="sticky top-0 flex justify-between items-center p-6 bg-black z-20 lg:px-24">
-          <span
-            className="cursor-pointer flex gap-3"
-            onClick={() => {
-              router.push("/");
-            }}
+        <div className="sticky top-0 w-full flex items-center justify-between px-12 py-5 bg-[#0F0F0F] text-white z-20 border-b border-white/10">
+          {/* Logo + Title */}
+          <div
+            className="flex items-center gap-4 cursor-pointer"
+            onClick={() => router.push("/")}
           >
-            <img src="/website_logo.png" alt="" className="size-8" />
-            <h1 className="text-2xl">Next Baazar</h1>
-          </span>
-          <span className="ml-auto">
+            <img src="/website_logo.png" alt="Logo" className="size-10" />
+            <h1 className="text-xl font-semibold tracking-wide  text-yellow-400 ">
+              Next Baazar
+            </h1>
+          </div>
+
+          {/* Search Bar */}
+          <div className="ml-auto">
             <SearchBar />
-          </span>
+          </div>
+
+          {/* Wishlist */}
           <span
-            className="ml-auto mr-3 cursor-pointer text-gray-300 hover:text-gray-200"
-            onClick={() => {
-              router.push(`/wishlist`);
-            }}
+            className="ml-6 text-gray-300 hover:text-white text-sm cursor-pointer text-yellow-400"
+            onClick={() => router.push("/wishlist")}
           >
-            My wishlist
+            My Wishlist
           </span>
 
-          <span className="ml-6 mr-3">
+          {/* Cart */}
+          <div className="ml-6 text-yellow-400">
             <CartMenu />
-          </span>
-          <SignInComponent />
+          </div>
+
+          {/* Sign in / User */}
+          <div className="ml-4">
+            <SignInComponent />
+          </div>
         </div>
       )}
     </>

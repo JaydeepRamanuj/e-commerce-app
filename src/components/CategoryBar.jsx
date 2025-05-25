@@ -5,20 +5,26 @@ import { categoriesList } from "@/app/constants";
 
 function CategoryBar() {
   const router = useRouter();
+
   return (
-    <div className="sticky top-[72px] lg:top-[86px] py-3 p-2 flex items-center bg-black/70 rounded gap-2 overflow-x-auto scrollbar-hide no-scrollbar mb-3 md:mb-6 z-10 lg:px-24">
-      <span className="text-xl font-bold">Categories: </span>
-      {categoriesList.map((category, index) => (
-        <div
-          key={index}
-          className=" bg-gray-600/30 text-white text-center px-2 py-0.5 rounded hover:bg-gray-400/20 cursor-pointer active:scale-[0.97] whitespace-nowrap"
-          onClick={() => {
-            router.push(`/categories/${category.toLocaleLowerCase()}`);
-          }}
-        >
-          {category}
-        </div>
-      ))}
+    <div className="sticky top-[72px] lg:top-[86px] z-10 mb-4 md:mb-6 px-2 lg:px-24">
+      <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide no-scrollbar bg-black/70 backdrop-blur-md p-3 rounded-lg">
+        <span className="text-lg sm:text-xl font-semibold text-yellow-400 whitespace-nowrap">
+          Categories:
+        </span>
+
+        {categoriesList.map((category, index) => (
+          <div
+            key={index}
+            role="button"
+            tabIndex={0}
+            onClick={() => router.push(`/categories/${category.toLowerCase()}`)}
+            className="text-sm sm:text-base text-yellow-100 bg-yellow-500/10 border border-yellow-400/20 px-3 py-1 rounded-full cursor-pointer hover:bg-yellow-400/20 active:scale-95 transition-all whitespace-nowrap"
+          >
+            {category}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

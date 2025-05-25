@@ -3,22 +3,25 @@ import CategorySection from "../components/CategorySection";
 
 export default function Home() {
   return (
-    <div className="">
+    <div className="bg-black min-h-screen">
       <Suspense
         fallback={
-          <div className="my-6 min-h-[300px] bg-slate-300/10 rounded-md p-3 flex flex-col justify-center items-center gap-3">
+          <div className="my-6 min-h-[300px] bg-yellow-900/10 border border-yellow-700/20 rounded-xl p-6 flex flex-col justify-center items-center gap-3">
             <span className="loader"></span>
-            <span>Loading Laptops...</span>
+            <span className="text-yellow-400">Loading Laptops...</span>
           </div>
         }
       >
         <CategorySection title="Laptops" category="laptops" />
       </Suspense>
+
       <Suspense
         fallback={
-          <div className="my-6 min-h-[300px] bg-slate-300/10 rounded-md p-3 flex flex-col justify-center items-center gap-3">
+          <div className="my-6 min-h-[300px] bg-yellow-900/10 border border-yellow-700/20 rounded-xl p-6 flex flex-col justify-center items-center gap-3">
             <span className="loader"></span>
-            <span>Loading High rated Products...</span>
+            <span className="text-yellow-400">
+              Loading High rated Products...
+            </span>
           </div>
         }
       >
@@ -27,11 +30,12 @@ export default function Home() {
           type="high-rated-products"
         />
       </Suspense>
+
       <Suspense
         fallback={
-          <div className="my-6 min-h-[300px] bg-slate-300/10 rounded-md p-3 flex flex-col justify-center items-center gap-3">
+          <div className="my-6 min-h-[300px] bg-yellow-900/10 border border-yellow-700/20 rounded-xl p-6 flex flex-col justify-center items-center gap-3">
             <span className="loader"></span>
-            <span>Loading Products on sale...</span>
+            <span className="text-yellow-400">Loading Products on sale...</span>
           </div>
         }
       >
@@ -40,9 +44,9 @@ export default function Home() {
 
       <Suspense
         fallback={
-          <div className="my-6 min-h-[300px] bg-slate-300/10 rounded-md p-3 flex flex-col justify-center items-center gap-3">
+          <div className="my-6 min-h-[300px] bg-yellow-900/10 border border-yellow-700/20 rounded-xl p-6 flex flex-col justify-center items-center gap-3">
             <span className="loader"></span>
-            <span>Loading Smartphones...</span>
+            <span className="text-yellow-400">Loading Smartphones...</span>
           </div>
         }
       >
