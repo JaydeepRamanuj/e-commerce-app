@@ -30,20 +30,18 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider appearance={{ baseTheme: dark }}>
-      <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased  relative`}
-        >
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased  relative`}
+      >
+        <ClerkProvider appearance={{ baseTheme: dark }}>
           <StoreProvider>
-            <ClerkProvider>
-              <ClerkAuthWatcher />
-              <Header />
-              <CategoryBar />
-              <Main>{children}</Main>
-              <Footer />
-              <SideBar />
-            </ClerkProvider>
+            <ClerkAuthWatcher />
+            <Header />
+            <CategoryBar />
+            <Main>{children}</Main>
+            <Footer />
+            <SideBar />
           </StoreProvider>
           <ToastContainer
             autoClose={3000}
@@ -52,8 +50,8 @@ export default function RootLayout({ children }) {
             hideProgressBar
             className="w-fit"
           />
-        </body>
-      </html>
-    </ClerkProvider>
+        </ClerkProvider>
+      </body>
+    </html>
   );
 }

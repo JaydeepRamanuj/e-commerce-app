@@ -18,7 +18,6 @@ function Header() {
   const breakpoint = useBreakpoint();
   const toolData = useSelector((state) => state.tool);
   const dispatch = useDispatch();
-  const { redirectToSignIn } = useClerk();
   const { isSignedIn } = useUser();
   // console.log(breakpoint);
   if (breakpoint === null) return;
@@ -26,7 +25,7 @@ function Header() {
   return (
     <>
       {breakpoint < 992 ? (
-        <div className="sticky top-0 flex justify-between items-center p-4 bg-[#0F0F0F] text-white z-20">
+        <div className="sticky top-0 flex justify-between items-center p-2 md:p-4 bg-[#0F0F0F] text-white z-20">
           <span
             className="cursor-pointer flex gap-3 items-center"
             onClick={() => router.push("/")}
@@ -37,7 +36,7 @@ function Header() {
           <SearchBar />
 
           <div
-            className="size-10 rounded-full bg-white/10 flex justify-center items-center p-1 hover:bg-white/20 cursor-pointer"
+            className="size-10 rounded-full bg-white/10 flex justify-center items-center p-1 hover:bg-white/20 cursor-pointer border border-yellow-600/30 shadow-lg shadow-yellow-400/5 text-yellow-400"
             onClick={() => dispatch(toggleSidebar())}
           >
             {toolData.isSidebarVisible ? (
@@ -59,12 +58,12 @@ function Header() {
             </h1>
           </div>
 
-          <div className="ml-auto">
+          <div className="md:ml-auto">
             <SearchBar />
           </div>
 
           <span
-            className="ml-auto mr-3 cursor-pointer text-gray-300 hover:text-gray-200"
+            className="ml-auto mr-3 cursor-pointer  text-yellow-400 hover:text-yellow-600"
             onClick={() => {
               if (isSignedIn) {
                 router.push(`/wishlist`);

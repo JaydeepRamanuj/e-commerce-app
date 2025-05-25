@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 function CartMenu() {
   const cartData = useSelector((state) => state.cart);
   const router = useRouter();
-  const { redirectToSignIn } = useClerk();
+  const { openSignIn } = useClerk();
   const { isSignedIn } = useUser();
   return (
     <div
@@ -18,7 +18,7 @@ function CartMenu() {
           router.push(`/cart/${cartData.cartId}`);
         } else {
           toast.warn("Please sign in to add product to cart");
-          redirectToSignIn({ returnBackUrl: window.location.href });
+          openSignIn({ returnBackUrl: window.location.href });
         }
       }}
     >

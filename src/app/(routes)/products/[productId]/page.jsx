@@ -21,53 +21,63 @@ async function ProductPage({ params }) {
 
   return (
     <>
-      <div>
-        <div className="flex flex-col md:flex-row  flex-wrap">
+      <div className="px-2 lg:px-24 text-yellow-100">
+        <div className="flex flex-col md:flex-row flex-wrap gap-6">
           <ProductImageContainer productData={productData} />
-          <div className="mt-3 lg:mt-0 flex-1 lg:w-1/2 text-gray-300">
-            <h3 className="text-sm">Category: {productData?.category}</h3>
-            <h3 className="text-sm flex">
-              Tags:
-              <span className="flex items-center gap-3 pl-3">
+
+          <div className="flex-1 lg:w-1/2 text-yellow-100">
+            <h3 className="text-sm text-yellow-400 mb-1">
+              Category: {productData?.category}
+            </h3>
+            <h3 className="text-sm flex items-start gap-2 mb-2">
+              <span className="text-yellow-400">Tags:</span>
+              <span className="flex flex-wrap gap-2">
                 {productData?.tags.map((tag, index) => (
                   <Tag title={tag} key={index} />
                 ))}
               </span>
             </h3>
-            <hr className="w-full my-6  border-gray-400/30" />
+
+            <hr className="my-4 border-yellow-200/30" />
+
             <div className="product-info flex flex-wrap">
               <div className="w-full sm:w-[70%]">
-                <h1 className="text-3xl font-semibold">{productData.title}</h1>
-                <h4 className="mt-3 flex items-center gap-2">
-                  <span>{productData.rating}</span>{" "}
+                <h1 className="text-3xl font-bold text-yellow-50 mb-2">
+                  {productData.title}
+                </h1>
+
+                <h4 className="flex items-center gap-2 mb-3">
+                  <span>{productData.rating}</span>
                   <Rating rating={productData.rating} />
                   <span>{productData.ratingCount} ratings</span>
                 </h4>
-                <h2 className="flex items-end gap-2">
-                  <span className="text-orange-400 font-light text-sm ">
+
+                <h2 className="flex items-end gap-2 mb-4">
+                  <span className="text-yellow-400 text-sm font-medium">
                     -{productData.discountPercentage}% off
                   </span>
-                  <span className="text-2xl font-semibold">
-                    ${" "}
+                  <span className="text-2xl font-bold text-yellow-50">
+                    $
                     {findDiscountedPrice(
                       parseFloat(productData.price),
                       parseFloat(productData.discountPercentage)
                     )}
                   </span>
-                  <span className="flex items-center">
-                    <span>M.R.P. : </span>
-                    <span className="ml-1.5 line-through decoration-gray-200/60">
+                  <span className="flex items-center text-sm">
+                    <span className="text-yellow-200/70">M.R.P.:</span>
+                    <span className="ml-1.5 line-through decoration-yellow-400/60">
                       $ {productData.price}
                     </span>
                   </span>
                 </h2>
-                <div className="my-4 flex gap-4 items-start ">
+
+                <div className="my-4 flex gap-6 flex-wrap">
                   {productData.returnPolicy && (
-                    <div className="flex flex-col items-center max-w-[80px] text-center gap-1.5">
-                      <span className="h-10 w-10 bg-gray-200 p-1 rounded-full flex justify-center items-center">
+                    <div className="flex flex-col items-center text-center max-w-[100px] gap-1.5">
+                      <span className="h-12 w-12 bg-yellow-500/20 p-1 rounded-full flex justify-center items-center">
                         <img
                           src="/return.png"
-                          alt=""
+                          alt="return"
                           className="size-full rounded-full"
                         />
                       </span>
@@ -77,11 +87,11 @@ async function ProductPage({ params }) {
                     </div>
                   )}
                   {productData.shippingInformation && (
-                    <div className="flex flex-col items-center max-w-[80px] text-center gap-1.5">
-                      <span className="h-10 w-10 bg-gray-200 p-1 rounded-full flex justify-center items-center">
+                    <div className="flex flex-col items-center text-center max-w-[100px] gap-1.5">
+                      <span className="h-12 w-12 bg-yellow-500/20 p-1 rounded-full flex justify-center items-center">
                         <img
                           src="/shipping.png"
-                          alt=""
+                          alt="shipping"
                           className="size-full rounded-full"
                         />
                       </span>
@@ -91,11 +101,11 @@ async function ProductPage({ params }) {
                     </div>
                   )}
                   {productData.warrantyInformation && (
-                    <div className="flex flex-col items-center max-w-[80px] text-center gap-1.5">
-                      <span className="h-10 w-10 bg-gray-200 p-1 rounded-full flex justify-center items-center">
+                    <div className="flex flex-col items-center text-center max-w-[100px] gap-1.5">
+                      <span className="h-12 w-12 bg-yellow-500/20 p-1 rounded-full flex justify-center items-center">
                         <img
                           src="/warranty.png"
-                          alt=""
+                          alt="warranty"
                           className="size-full rounded-full"
                         />
                       </span>
@@ -104,20 +114,22 @@ async function ProductPage({ params }) {
                       </span>
                     </div>
                   )}
-                  <div className="flex flex-col items-center max-w-[80px] text-center gap-1.5">
-                    <span className="h-10 w-10 bg-gray-200 p-1 rounded-full flex justify-center items-center">
+                  <div className="flex flex-col items-center text-center max-w-[100px] gap-1.5">
+                    <span className="h-12 w-12 bg-yellow-500/20 p-1 rounded-full flex justify-center items-center">
                       <img
-                        src="cod.png"
-                        alt=""
+                        src="/cod.png"
+                        alt="cash on delivery"
                         className="size-full rounded-full"
                       />
                     </span>
-                    <span className="text-sm">cash on delivery</span>
+                    <span className="text-sm">Cash on Delivery</span>
                   </div>
                 </div>
               </div>
-              <div className="flex-1">
+
+              <div className="flex-1 relative">
                 <FavoriteIcon
+                  isAbsolute={false}
                   productObj={{
                     id: productData.id,
                     title: productData.title,
@@ -129,7 +141,8 @@ async function ProductPage({ params }) {
                     availabilityStatus: productData.availabilityStatus,
                   }}
                 />
-                <div className="mt-3 bg-gray-300/10 p-3 rounded-md">
+
+                <div className="mt-3 bg-yellow-500/5 border border-yellow-400/10 p-4 rounded-xl shadow-inner">
                   <AddToCartButton
                     productId={productData.id}
                     title={productData.title}
@@ -137,6 +150,7 @@ async function ProductPage({ params }) {
                     price={productData.price}
                     discountPercentage={productData.discountPercentage}
                   />
+                  <span className="block my-3"></span>
                   <BuyNowButton
                     productId={productData.id}
                     title={productData.title}
@@ -148,18 +162,23 @@ async function ProductPage({ params }) {
               </div>
             </div>
 
-            <hr className="w-full my-6  border-gray-400/30" />
-            <div className="">
-              <h3 className="font-bold">About this item</h3>
-              <h4 className="text-sm mt-3  lg:w-[70%]">
+            <hr className="my-6 border-yellow-200/30" />
+
+            <div>
+              <h3 className="text-xl font-bold text-yellow-200 mb-2">
+                About this item
+              </h3>
+              <p className="text-sm leading-relaxed lg:w-[70%] text-yellow-100/90">
                 {productData.description}
-              </h4>
+              </p>
             </div>
           </div>
         </div>
-        <hr className="w-full my-3  border-gray-400/30" />
+
+        <hr className="w-full my-6 border-yellow-200/30" />
+
         <div>
-          <h3 className="font-bold text-xl">Reviews</h3>
+          <h3 className="text-xl font-bold text-yellow-200 mb-3">Reviews</h3>
           <div>
             {productData.reviews.map((review, index) => (
               <ProductReview
@@ -171,7 +190,9 @@ async function ProductPage({ params }) {
             ))}
           </div>
         </div>
-        <hr className="w-full my-3  border-gray-400/30" />
+
+        <hr className="w-full my-6 border-yellow-200/30" />
+
         <CategorySection
           title="More like this"
           category={productData.category}

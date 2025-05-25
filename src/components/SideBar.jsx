@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import { toggleSidebar } from "@/lib/store/slices/toolSlice";
 import { useBreakpoint } from "../hooks/useBreakpoint";
 import { IoHeart } from "react-icons/io5";
+import { useClerk, useUser } from "@clerk/nextjs";
+import { toast } from "react-toastify";
 
 function SideBar() {
   const toolData = useSelector((state) => state.tool);
@@ -14,6 +16,8 @@ function SideBar() {
   const breakpoint = useBreakpoint();
   const userData = useSelector((state) => state.user);
   const dispatch = useDispatch();
+  const { openSignIn } = useClerk();
+  const { isSignedIn } = useUser();
 
   return (
     <>
@@ -21,34 +25,41 @@ function SideBar() {
         <div
           className={`h-[70%] fixed ${
             toolData.isSidebarVisible ? "right-0" : "-right-full"
-          }   top-1/2 -translate-y-1/2 bg-black/80 flex flex-col gap-4  p-6 fixed rounded-l-xl transition-all duration-300 border-1 border-gray-600/60 border-r-0`}
+          } top-1/2 -translate-y-1/2 bg-black/80 backdrop-blur-md flex flex-col items-center gap-4 p-6 rounded-l-xl transition-all duration-300 border border-yellow-400/20 border-r-0 shadow-lg shadow-yellow-400/10`}
         >
           <SignInComponent />
+
           <span
-            className="p-1.5 rounded bg-white/10 flex flex-col justify-center items-center hover:bg-white/20 cursor-pointer"
+            className="p-2 rounded-md bg-yellow-400/10 text-yellow-200 flex flex-col justify-center items-center hover:bg-yellow-400/20 cursor-pointer transition"
             onClick={() => {
               dispatch(toggleSidebar());
             }}
           >
             <CartMenu />
-            <span>Cart</span>
+            <span className="text-sm font-medium">Cart</span>
           </span>
+
           <span
-            className="p-1.5 rounded bg-white/10 flex flex-col justify-center items-center hover:bg-white/20 cursor-pointer"
+            className="p-2 rounded-md bg-yellow-400/10 text-yellow-200 flex flex-col justify-center items-center hover:bg-yellow-400/20 cursor-pointer transition"
             onClick={() => {
-              router.push(`/wishlist`);
+              if (isSignedIn) {
+                router.push(`/wishlist`);
+              } else {
+                toast.warn("Please sign in to add product to cart");
+                openSignIn({ returnBackUrl: window.location.href });
+              }
               dispatch(toggleSidebar());
             }}
           >
-            <span className="w-fit cursor-pointer text-gray-300 hover:text-gray-200 relative">
-              <IoHeart className="text-4xl" />
+            <span className="relative">
+              <IoHeart className="text-4xl text-yellow-300 hover:text-yellow-200 transition" />
               {userData.wishlist.length > 0 && (
-                <div className="absolute size-4 p-0.5 rounded-full bg-red-500 text-white text-xs font-semibold flex justify-center items-center -right-0.5 -top-0.5 outline-1 outline-sky-300">
+                <div className="absolute size-4 p-0.5 rounded-full bg-red-500 text-white text-xs font-semibold flex justify-center items-center -right-0.5 -top-0.5 ring-1 ring-yellow-400">
                   {userData.wishlist.length}
                 </div>
               )}
             </span>
-            <span>Wishlist</span>
+            <span className="text-sm font-medium">Wishlist</span>
           </span>
         </div>
       )}

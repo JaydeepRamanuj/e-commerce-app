@@ -9,6 +9,7 @@ import { updateCartAsync } from "@/lib/store/async/cartAsyncThunk";
 import FavoriteIcon from "./FavoriteIcon";
 import { useClerk, useUser } from "@clerk/nextjs";
 import { toast } from "react-toastify";
+import BuyNowButton from "./BuyNowButton";
 
 function ProductCard({
   id,
@@ -20,7 +21,7 @@ function ProductCard({
   ratingCount,
   availabilityStatus = "In Stock",
 }) {
-  const { redirectToSignIn } = useClerk();
+  const { openSignIn } = useClerk();
   const { isSignedIn } = useUser();
 
   const cartData = useSelector((state) => state.cart);
@@ -33,7 +34,7 @@ function ProductCard({
 
   return (
     <div
-      className="max-w-[300px] relative p-3 w-full rounded-2xl bg-[#1a1a1a] text-yellow-100 cursor-pointer transition-all overflow-hidden shadow-md shadow-yellow-500/10 hover:shadow-yellow-500/20 hover:scale-[1.02] border border-yellow-600/20"
+      className="max-w-[300px] relative p-3 w-full rounded-2xl bg-[#1a1a1a] text-yellow-100 cursor-pointer transition-all overflow-hidden shadow-md shadow-yellow-500/10 hover:shadow-yellow-500/20 hover:scale-[1.02] border border-yellow-600/20 h-full"
       onClick={() => router.push(`/products/${id}`)}
     >
       <img
@@ -57,34 +58,13 @@ function ProductCard({
         </div>
       </div>
       <div className="relative w-full mt-3 flex gap-2">
-        <div
-          className="flex-1 text-black text-sm font-medium text-center bg-yellow-400 rounded p-1 flex items-center justify-center gap-1 hover:bg-yellow-300 active:scale-95 transition-all"
-          onClick={(e) => {
-            e.stopPropagation();
-            // console.log(isSignedIn);
-            if (isSignedIn) {
-              dispatch(
-                updateCartAsync({
-                  cartId: cartData.cartId,
-                  productId: id,
-                  type: "addToCart",
-                  productDetails: {
-                    productId: id,
-                    price: discountedPrice,
-                    title: title,
-                    img: imgUrl,
-                  },
-                })
-              );
-              router.push(`/cart/${cartData.cartId}`);
-            } else {
-              toast.warn("Please sign in to buy product");
-              redirectToSignIn({ returnBackUrl: window.location.href });
-            }
-          }}
-        >
-          Buy now
-        </div>
+        <BuyNowButton
+          productId={id}
+          discountPercentage={discountPercentage}
+          imgUrl={imgUrl}
+          price={price}
+          title={title}
+        />
         <div
           className="min-w-[40px] bg-yellow-600 rounded flex items-center justify-center p-1 text-black hover:bg-yellow-500 active:scale-95 transition-all"
           onClick={(e) => {
@@ -105,7 +85,7 @@ function ProductCard({
               );
             } else {
               toast.warn("Please sign in to add product to cart");
-              redirectToSignIn({ returnBackUrl: window.location.href });
+              openSignIn({ returnBackUrl: window.location.href });
             }
           }}
         >

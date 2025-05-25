@@ -58,8 +58,8 @@ function SearchBar() {
   }
 
   return (
-    <div className="flex items-center">
-      <div className="relative border border-white/20 rounded-full focus-within:border-white/70 transition-colors bg-yellow-600/10 text-yellow-400 border border-yellow-500/30 rounded">
+    <div className=" flex items-center">
+      <div className=" relative border border-white/20 rounded-full focus-within:border-white/70 transition-colors bg-yellow-600/10 text-yellow-400 border border-yellow-500/30 rounded">
         <form className="flex h-full" onSubmit={handleSearchSubmit}>
           <input
             type="text"
@@ -90,15 +90,6 @@ function SearchBar() {
           </div>
         )}
       </div>
-
-      {isFilterIconVisible && (
-        <div
-          className="ml-3 size-10 md:size-12 p-2 rounded-full bg-white/10 hover:bg-white/20 flex justify-center items-center cursor-pointer"
-          title="Filter"
-        >
-          <FaFilter className="text-white size-4" />
-        </div>
-      )}
     </div>
   );
 }

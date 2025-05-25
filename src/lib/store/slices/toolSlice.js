@@ -13,6 +13,7 @@ const initialState = {
   itemListForSearchBar: [],
   activeSearchKeys: [],
   isSidebarVisible: false,
+  isPopupVisible: false,
 };
 
 const userSlice = createSlice({
@@ -55,6 +56,9 @@ const userSlice = createSlice({
     toggleSidebar: (state) => {
       state.isSidebarVisible = !state.isSidebarVisible;
     },
+    togglePopup: (state) => {
+      state.isPopupVisible = !state.isPopupVisible;
+    },
   },
 });
 
@@ -68,5 +72,6 @@ export const {
   removeCategoryToFilter,
   setActiveSearchKeys,
   toggleSidebar,
+  togglePopup,
 } = userSlice.actions;
 export default userSlice.reducer;

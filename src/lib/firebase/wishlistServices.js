@@ -33,8 +33,8 @@ async function getProductsFromWishlist(userId) {
 
 async function addProductToWishlist(userId, productData) {
   const userDocRef = doc(db, "users", String(userId));
-  console.log("userId", userId);
-  console.log("Inside addProductToWishlist()");
+  // console.log("userId", userId);
+  // console.log("Inside addProductToWishlist()");
 
   try {
     await updateDoc(userDocRef, {
