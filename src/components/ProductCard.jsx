@@ -28,7 +28,7 @@ function ProductCard({
 
   return (
     <div
-      className="relative p-3 w-full rounded-2xl bg-[#1a1a1a] text-yellow-100 cursor-pointer transition-all overflow-hidden shadow-md shadow-yellow-500/10 hover:shadow-yellow-500/20 hover:scale-[1.02] border border-yellow-600/20"
+      className="max-w-[300px] relative p-3 w-full rounded-2xl bg-[#1a1a1a] text-yellow-100 cursor-pointer transition-all overflow-hidden shadow-md shadow-yellow-500/10 hover:shadow-yellow-500/20 hover:scale-[1.02] border border-yellow-600/20"
       onClick={() => router.push(`/products/${id}`)}
     >
       <img

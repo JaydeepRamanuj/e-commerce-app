@@ -45,7 +45,6 @@ function Header() {
         </div>
       ) : (
         <div className="sticky top-0 w-full flex items-center justify-between px-12 py-5 bg-[#0F0F0F] text-white z-20 border-b border-white/10">
-          {/* Logo + Title */}
           <div
             className="flex items-center gap-4 cursor-pointer"
             onClick={() => router.push("/")}
@@ -56,12 +55,10 @@ function Header() {
             </h1>
           </div>
 
-          {/* Search Bar */}
           <div className="ml-auto">
             <SearchBar />
           </div>
 
-          {/* Wishlist */}
           <span
             className="ml-6 text-gray-300 hover:text-white text-sm cursor-pointer text-yellow-400"
             onClick={() => router.push("/wishlist")}
@@ -69,12 +66,10 @@ function Header() {
             My Wishlist
           </span>
 
-          {/* Cart */}
           <div className="ml-6 text-yellow-400">
             <CartMenu />
           </div>
 
-          {/* Sign in / User */}
           <div className="ml-4">
             <SignInComponent />
           </div>

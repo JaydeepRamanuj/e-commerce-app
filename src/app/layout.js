@@ -9,6 +9,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import SideBar from "../components/SideBar";
 import Main from "../components/Main";
+import ClerkAuthWatcher from "@/components/ClerkAuthWatcher";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -35,6 +36,7 @@ export default function RootLayout({ children }) {
           className={`${geistSans.variable} ${geistMono.variable} antialiased  relative`}
         >
           <StoreProvider>
+            <ClerkAuthWatcher />
             <Header />
             <CategoryBar />
             <Main>{children}</Main>

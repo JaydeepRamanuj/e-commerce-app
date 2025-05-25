@@ -28,6 +28,15 @@ const cartSlice = createSlice({
       state.totalTax = action.payload.totalTax;
       state.grandTotal = action.payload.grandTotal;
     },
+    clearCart: (state) => {
+      state.cartId = "";
+      state.userId = "";
+      state.itemTotalVal = 0;
+      state.items = [];
+      state.totalTax = 0;
+      state.grandTotal = 0;
+      state.taxApplicable = 18;
+    },
     addToCart: (state, action) => {
       state.itemTotalVal += parseFloat(action.payload.price);
       updateTotals(state);
@@ -81,5 +90,6 @@ export const {
   increaseProductAmount,
   decreaseProductAmount,
   initializeCart,
+  clearCart,
 } = cartSlice.actions;
 export default cartSlice.reducer;

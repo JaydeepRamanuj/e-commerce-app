@@ -20,6 +20,13 @@ const userSlice = createSlice({
         state.wishlist = action.payload.wishlist;
       }
     },
+    clearUser: (state) => {
+      state.userId = "";
+      state.username = "";
+      state.cartId = "";
+      state.email = "";
+      state.wishlist = [];
+    },
     addItemToWishlist: (state, action) => {
       if (!state.wishlist.includes(action.payload)) {
         state.wishlist.push(action.payload);
@@ -33,6 +40,10 @@ const userSlice = createSlice({
   },
 });
 
-export const { addItemToWishlist, removeItemFromWishlist, initializeUser } =
-  userSlice.actions;
+export const {
+  addItemToWishlist,
+  removeItemFromWishlist,
+  initializeUser,
+  clearUser,
+} = userSlice.actions;
 export default userSlice.reducer;

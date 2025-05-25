@@ -1,6 +1,7 @@
 import React from "react";
 import { FaCaretRight } from "react-icons/fa";
 import ProductCard from "./ProductCard";
+import ProductCardSkeleton from "./ProductCardSkeleton";
 
 function CategoryList({ title, products }) {
   return (
@@ -9,9 +10,6 @@ function CategoryList({ title, products }) {
         <span className="text-2xl md:text-4xl font-bold text-yellow-500 uppercase tracking-wide drop-shadow-sm">
           {title}
         </span>
-        {/* <span className="cursor-pointer bg-yellow-600/10 text-yellow-400 border border-yellow-500/30 rounded px-3 py-1 flex items-center gap-2 hover:bg-yellow-600/20 hover:text-yellow-300 active:scale-95 transition-all">
-          more <FaCaretRight />
-        </span> */}
       </div>
       <div className="mt-6 p-3 justify-between gap-3 rounded-md responsive-grid">
         {products.map((product, index) => (
