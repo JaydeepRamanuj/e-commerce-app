@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
           <StoreProvider>
             <ClerkAuthWatcher />
             <Header />
-            <CategoryBar />
+            {/* <CategoryBar /> */}
             <Main>{children}</Main>
             <Footer />
             <SideBar />

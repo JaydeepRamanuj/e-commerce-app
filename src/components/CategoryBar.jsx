@@ -7,7 +7,7 @@ function CategoryBar() {
   const router = useRouter();
 
   return (
-    <div className="sticky top-[72px] lg:top-[86px] z-10 mb-4 md:mb-6 px-2 lg:px-24">
+    <div className=" mb-4 md:mb-6 px-2 lg:px-24">
       <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide no-scrollbar bg-black/70 backdrop-blur-md p-3 rounded-lg">
         <span className="text-lg sm:text-xl font-semibold text-yellow-400 whitespace-nowrap">
           Categories:
